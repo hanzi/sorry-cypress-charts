@@ -148,6 +148,31 @@ spec:
         {{- end }}
         - name: MINIO_READ_URL_PREFIX
           value: {{ .Values.minio.readUrlPrefix }}
+        {{- else if and (.Values.external_minio.enabled) (eq .Values.director.environmentVariables.screenshotsDriver "../screenshots/minio.driver") }}
+        - name: MINIO_BUCKET
+          value: {{ .Values.external_minio.bucketName | quote }}
+        - name: MINIO_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "sorry-cypress-helm.fullname" . }}-miniosecrets
+              key: "accessKey"
+        - name: MINIO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "sorry-cypress-helm.fullname" . }}-miniosecrets
+              key: "secretKey"
+        - name: MINIO_URL
+          value: {{ .Values.external_minio.url | quote }}
+        - name: MINIO_ENDPOINT
+          value: {{ .Values.external_minio.endpoint | quote }}
+        - name: MINIO_PORT
+          value: {{ .Values.external_minio.port | quote }}
+        {{- if hasPrefix "https://" (lower .Values.external_minio.host | quote) }}
+        - name: MINIO_USESSL
+          value: "true"
+        {{- end }}
+        - name: MINIO_READ_URL_PREFIX
+          value: {{ .Values.external_minio.readUrlPrefix | quote }}
         {{- end }}
         - name: INACTIVITY_TIMEOUT_SECONDS
           value: {{ .Values.director.environmentVariables.inactivityTimeoutSeconds | quote }}

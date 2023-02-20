@@ -244,6 +244,21 @@ https://docs.sorry-cypress.dev/configuration/director-configuration/minio-config
 | `minio.persistence.size`      | Size of persistent volume claim of MinIO	                                                                                                                                                     | `10Gi`                          |
 | `minio.readUrlPrefix`         | Override the URL whih will be used to read files from MinIO                                                                                                                                    | `""`                            |
 
+### MinIO (external)
+
+If you already have an existing instance of MinIO that you would like to use, these options can be used to configure it.  
+You should use `"../screenshots/minio.driver"` as your screenshot driver.
+
+| Parameter                      | Description                                                                                                                                                  | Default                         |
+|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
+| `external_minio.enabled`       | If enabled, an external MinIO instance will be configured. (This is ignored is `mini.enabled` is set.)                                                       | `false`                         |
+| `external_minio.endpoint`      | Hostname or IP address that both director and cypress agents will use to communicate with minio service.                                                     | `storage.yourdomain.com`        |
+| `external_minio.url`           | The public URL to the external MinIO instance. This URL should be available from your browser and it will be used to fetch generated screenshots and videos. | `http://storage.yourdomain.com` |
+| `external_minio.bucketName`    | Name of the bucket to be used for storing screenshots and videos.                                                                                            | `example-bucket`                |
+| `external_minio.accessKey`     | Access key (username) that has read/write permissions for that bucket.                                                                                       | `""`                            |
+| `external_minio.secretKey`     | Secret key for the external MinIO instance..                                                                                                                 | `""`                            |
+| `external_minio.readUrlPrefix` | Override the URL whih will be used to read files from MinIO                                                                                                  | `""`                            |
+
 ### Azure Blob Storage
 To use Azure Blob Storage you should use `"../screenshots/azure-blob-storage.driver"` as your screenshot driver.
 

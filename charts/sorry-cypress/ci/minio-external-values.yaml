@@ -1,0 +1,3 @@
+external_minio:
+  enabled: true
+  url: "https://foo.bar"

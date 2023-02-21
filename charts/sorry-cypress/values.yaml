@@ -404,6 +404,17 @@ minio:
   persistence:
     size: 10Gi
 
+external_minio:
+  enabled: false
+
+  url: http://storage.your-domain.com
+  endpoint: storage.your-domain.com
+  port: 3000
+  readUrlPrefix: ''
+  bucketName: example-bucket
+  accessKey: ''
+  secretKey: ''
+
 azureBlobStorage:
   containerName: sorry-cypress
   uploadUrlExpiryInHours: 24

@@ -1,3 +1,10 @@
+# 1.11.0
+- Add option to use an external/pre-existing MinIO instance instead of deploying a new one.
+
+# 1.10.0
+- Allow MongoDB name to be defined by a secret
+- Mount certificate in the containers
+
 # 1.9.0
 - Add option to specify name of config map used for the certificate bundle to the mongodb connection.
 # 1.8.1
